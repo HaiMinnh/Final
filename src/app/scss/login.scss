@@ -1,0 +1,121 @@
+// login.scss
+
+// Biến màu sắc
+$primary-color: #1dbf73;
+$error-color: #dc3545; // Màu đỏ cho thông báo lỗi
+$background-color: #fff; // Màu nền
+$border-color: rgba(0, 0, 0, .05); // Màu viền
+$shadow-color: rgba(0, 0, 0, .05); // Màu bóng
+
+
+.sign-in {
+  margin-bottom: 50px;
+  margin-top: 100px;
+
+  .container_form {
+    background: $background-color;
+    border: 1px solid $border-color;
+    border-radius: 20px;
+    box-shadow: 0 15px 16.83px .17px $shadow-color;
+    margin: 0 auto;
+    width: 900px;
+
+    .signin-content {
+      display: flex;
+      padding-bottom: 87px;
+      padding-top: 67px;
+
+      .signin-image {
+        overflow: hidden;
+        width: 50%;
+        padding: 30px;
+
+        img {
+          width: 100%;
+          border-style: none;
+          vertical-align: middle;
+        }
+      }
+
+      .signin-form {
+        overflow: hidden;
+        width: 50%;
+        padding: 0 30px;
+
+        .form-title {
+          color: $primary-color;
+          font-weight: 700;
+          margin-left: 50px;
+        }
+
+        .login-form {
+          .form-outline {
+            position: relative;
+
+            input {
+              display: block;
+              width: 100%;
+              padding: .375rem .75rem;
+              font-size: 1rem;
+              font-weight: 400;
+              line-height: 1.5;
+              color: #212529;
+              background-color: $background-color;
+              background-clip: padding-box;
+              border: 1px solid $primary-color;
+              border-radius: .375rem;
+              transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+
+              &:focus {
+                border-color: $primary-color;
+                box-shadow: 0 0 5px rgba($primary-color, 0.5);
+              }
+            }
+
+            .text-danger {
+              color: $error-color;
+              font-size: 12px;
+              position: absolute;
+              bottom: -18px; // Điều chỉnh vị trí của thông báo lỗi
+              
+            }
+          }
+
+          .form-group {
+            margin-top: 30px;
+
+            .login {
+              background: $primary-color;
+              border: none;
+              border-radius: 50px;
+              color: #fff;
+              font-size: 16px;
+              font-weight: 500;
+              height: 45px;
+              transition: all .3s ease-in-out;
+              width: 110px;
+
+              &:hover {
+                background-color: darken($primary-color, 10%);
+              }
+            }
+
+            .text_register {
+              color: $primary-color;
+              font-size: 14px;
+              cursor: pointer;
+              outline: none;
+              text-decoration: none;
+              transition: color .3s;
+
+              &:hover {
+                text-decoration: none;
+                color: darken($primary-color, 10%);
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

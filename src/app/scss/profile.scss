@@ -1,0 +1,496 @@
+// Các biến cho màu sắc, kích thước và kiểu chữ
+$primary-color: #007bff;
+$secondary-color: #6c757d;
+$background-color: #f8f9fa;
+$text-color: #212529;
+$border-radius: 0.25rem;
+$padding: 1rem;
+
+.main_content {
+    margin: 1rem 0;
+
+    .main_wrapper {
+        margin: 0 auto;
+        padding: 20px 0 40px;
+
+        .main_row {
+            box-sizing: border-box;
+            display: flex;
+            justify-content: space-between;
+            margin: 0 auto;
+            max-width: 1240px;
+            overflow: hidden;
+            position: relative;
+            width: 100%;
+
+            .info {
+                margin-bottom: 1rem;
+                width: 35%;
+
+                .info_sellercard_top {
+
+                    margin-bottom: 30px;
+
+                    .info_card {
+                        background-color: #fff;
+                        border: 1px solid #dadbdd;
+                        font-size: 14px;
+                        padding: 30px;
+                        position: relative;
+
+                        .onl {
+                            height: 20px;
+                            left: 0;
+                            position: absolute;
+                            right: 0;
+
+                            .user_online {
+                                align-items: center;
+                                border: 1px solid #1dbf73;
+                                border-radius: 12px;
+                                color: #1dbf73;
+                                display: flex;
+                                padding: 0 6px;
+                                position: absolute;
+                                right: 30px;
+                                z-index: 1;
+
+                                i {
+                                    display: inline-block;
+                                    font-size: 10px;
+                                    line-height: 18px;
+                                    margin-right: 4px;
+                                }
+                            }
+
+                            .dropdown {
+                                position: relative;
+
+                                .dropdown-toggle {
+                                    background: none;
+                                    border: none;
+                                    left: 15px;
+                                    position: absolute;
+                                }
+
+                                .dropdown-menu {
+                                    position: absolute;
+                                    background-color: $background-color;
+                                    border-radius: $border-radius;
+                                    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+                                    padding: 0 !important;
+                                }
+                            }
+                        }
+
+                        .info_profile {
+                            display: flex;
+                            flex-direction: column;
+                            align-items: center;
+                            margin-top: 1rem;
+
+                            .info_profile_image {
+                                display: flex;
+                                justify-content: center;
+                                margin-bottom: 15px;
+
+                                .info_label {
+                                    cursor: pointer;
+                                    font-size: 3em;
+                                    height: 150px;
+                                    position: relative;
+                                    width: 150px;
+
+                                    .label_camera {
+                                        background-color: rgba(0, 0, 0, .65);
+                                        border-radius: 50%;
+                                        height: 100%;
+                                        opacity: 0;
+                                        position: absolute;
+                                        transition: opacity .3s ease-in-out;
+                                        width: 100%;
+
+                                        .icon {
+                                            left: 50%;
+                                            position: absolute;
+                                            top: 50%;
+                                            -webkit-transform: translate(-50%, -50%);
+                                            transform: translate(-50%, -50%);
+                                            font-size: 20px;
+                                            font-weight: 900;
+                                        }
+                                    }
+
+                                    .label_inp {
+                                        display: none !important;
+                                        visibility: hidden !important;
+                                    }
+
+                                    .image {
+                                        margin-top: 0.5rem;
+                                        align-items: center;
+                                        background-color: #e4e5e7;
+                                        border-radius: 50%;
+                                        color: #fff;
+                                        display: flex;
+                                        font-weight: 700;
+                                        height: 100%;
+                                        justify-content: center;
+                                        text-transform: uppercase;
+                                        width: 100%;
+                                        p{
+                                            font-size: 16px;
+
+                                        }
+                                    }
+                                }
+                            }
+
+                            .info_profile_label {
+                                text-align: center;
+                                margin-top: 0.5rem;
+
+                                p {
+                                    color: #222325;
+                                    display: block;
+                                    font-size: 20px;
+                                    font-weight: 700;
+                                    margin-bottom: 0;
+                                }
+
+                                .btn_update {
+                                    .edit {
+                                        fill: #b5b6ba;
+                                        background: none;
+                                        border: none;
+                                        display: inline-block;
+                                        height: 12px;
+                                        position: relative;
+                                        width: 12px;
+                                        margin-top: 10px;
+
+                                        .icon {
+                                            color: #b5b6ba;
+                                            height: 16px;
+                                            left: -5px;
+                                            position: absolute;
+                                            top: -5px;
+                                            width: 16px;
+                                            transition: color 0.3s ease;
+                                        }
+
+                                        &:hover .icon {
+                                            color: #000000;
+                                        }
+                                    }
+                                }
+
+                            }
+                        }
+
+                        .info_desc {
+                            border-top: 1px solid #dadbdd;
+                            margin-top: 24px;
+                            padding-top: 20px;
+
+                            .location {
+                                display: flex;
+                                justify-content: space-between;
+                                margin-bottom: 16px;
+
+                                .location_left {
+                                    color: #62646a;
+                                    font-size: 14px;
+
+                                    i {
+                                        margin-right: 12px;
+                                    }
+                                }
+
+                                .location_right {
+                                    color: #62646a;
+                                    font-size: 14px;
+                                    font-weight: 700;
+                                }
+                            }
+                        }
+                    }
+                }
+
+                .info_sellercard_bottom {
+
+                    .info {
+                        margin: 0;
+                        padding: 0;
+
+                        &.card {
+                            background-color: #fff;
+                            border: 1px solid #dadbdd;
+                            font-size: 14px;
+                            padding: 30px;
+                            position: relative;
+                            width: 100%;
+
+                            .inner_item {
+                                border-bottom: 1px solid #ddd;
+                                margin-bottom: 30px;
+                                padding-bottom: 10px;
+
+                                .inner_row {
+                                    display: flex;
+                                    justify-content: space-between;
+                                    align-items: center;
+
+                                    h3 {
+                                        color: #0e0e0f;
+                                        font-size: 16px;
+                                        font-weight: 700;
+                                        margin: 0;
+                                        padding: 0;
+                                    }
+
+                                    .edit {
+                                        fill: #b5b6ba;
+                                        background: none;
+                                        border: none;
+                                        display: inline-block;
+                                        height: 12px;
+                                        position: relative;
+                                        width: 12px;
+                                        margin-top: 10px;
+
+                                        .icon {
+                                            color: #b5b6ba;
+                                            height: 16px;
+                                            left: -5px;
+                                            position: absolute;
+                                            top: -5px;
+                                            width: 16px;
+                                            transition: color 0.3s ease;
+                                        }
+
+                                        &:hover .icon {
+                                            color: #000000;
+                                        }
+                                    }
+                                }
+
+                                .lorem {
+                                    color: #62646a;
+                                    font-size: 14px;
+                                    padding-top: 10px;
+                                }
+
+                                p {
+
+                                    span {
+                                        color: #b2b2b2;
+
+                                    }
+                                }
+
+                                h6 {
+                                    font-weight: 300 !important;
+                                    width: 40%;
+                                }
+                            }
+                        }
+
+                        .ul {
+                            display: flex;
+                            flex-direction: column;
+                            margin-top: 10px;
+
+                            .li {
+                                align-items: center;
+                                display: flex;
+                                gap: 10px;
+                                margin-bottom: 5px;
+
+                                .btn-connect {
+                                    background-color: initial;
+                                    color: #1890ff;
+                                    cursor: pointer;
+                                    outline: none;
+                                    text-decoration: none;
+                                    transition: color 0.3s;
+
+                                    &:hover {
+                                        color: #0056b3;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+            .gigs {
+                padding-left: 20px;
+                width: 65%;
+
+                .gigs_card_top {
+                    margin-bottom: 30px;
+
+                    .gigs_card {
+                        align-items: center;
+                        background-color: #fff;
+                        border: 1px solid #dadbdd;
+                        display: flex;
+                        font-size: 14px;
+                        justify-content: space-between;
+                        padding: 30px;
+                        position: relative;
+
+                        span {
+                            color: #404145;
+                            font-size: 18px;
+                            font-weight: 600;
+                            width: 70%;
+                        }
+
+                        .btn {
+                            background-color: #1dbf73;
+                            border: 1px solid transparent;
+                            border-radius: 3px;
+                            color: #fff !important;
+                            font-weight: 700;
+                            transition: color 0.2s, background-color 0.2s, box-shadow 0.2s, border 0.2s, transform 0.2s; // Thêm transform vào transition
+                            width: 30%;
+
+                            &:hover {
+                                background-color: #007a54;
+                                color: #ffeb3b;
+                                transform: scale(1.05);
+                                box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+                            }
+                        }
+                    }
+                }
+
+                .gigs_card_bottom {
+                    .gigs_card {
+                        background-color: #fff;
+                        border: 1px solid #dadbdd;
+                        font-size: 14px;
+                        margin-bottom: 20px;
+                        padding: 15px;
+                        position: relative;
+
+                        .row {
+                            display: flex;
+                            flex-wrap: wrap;
+                            margin-top: -0rem;
+                            margin-right: -0.75rem;
+                            margin-left: -0.75rem;
+
+                            .gigs_card_img {
+                                width: 40%;
+
+                                img {
+                                    width: 100%;
+                                }
+                            }
+
+                            .gigs_card_content {
+                                display: flex;
+                                flex-direction: column;
+                                width: 60%;
+
+                                h1 {
+                                    font-size: 16px;
+                                    font-weight: 700;
+                                }
+
+                                p {
+                                    font-size: 14px;
+                                }
+
+                                .d-flex {
+                                    justify-content: space-between;
+
+                                    .left {
+                                        font-size: 14px;
+                                        font-weight: 700;
+
+                                        .svg-inline--fa {
+                                            color: #ffbe5b;
+                                        }
+
+                                        .saoCV {
+                                            color: #ffbe5b;
+                                            margin-right: 5px;
+                                        }
+
+                                        .danhGia {
+                                            color: #b5b6ba;
+                                            font-weight: 400;
+                                        }
+                                    }
+
+                                    .right {
+                                        .giaTien {
+                                            color: #404145;
+                                            cursor: pointer;
+                                            font-size: 18px;
+                                        }
+                                    }
+                                }
+                            }
+
+                            .btn_edit {
+                                display: flex;
+                                justify-content: end;
+
+                                .viewdetail {
+                                    background-color: #1dbf73;
+                                    border: 1px solid transparent;
+                                    border-radius: 3px;
+                                    color: #fff !important;
+                                    font-weight: 700;
+                                    margin-right: 30px;
+                                    transition: color 0.2s, background-color 0.2s, box-shadow 0.2s, border 0.2s, transform 0.2s;
+                                    padding: 10px 20px;
+
+                                    a {
+                                        color: white;
+                                        text-decoration: none;
+                                    }
+
+                                    &:hover {
+                                        background-color: #007a54;
+                                        transform: scale(1.05);
+                                        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+                                    }
+                                }
+
+                                .right {
+                                    .delete {
+                                        background-color: #e14c4c;
+                                        border: 1px solid transparent;
+                                        border-radius: 3px;
+                                        color: #fff !important;
+                                        font-weight: 700;
+                                        margin: 0;
+                                        transition: color 0.2s, background-color 0.2s, box-shadow 0.2s, border 0.2s, transform 0.2s;
+                                        padding: 10px 20px;
+
+                                        &:hover {
+                                            background-color: #c82333;
+                                            transform: scale(1.05);
+                                            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+                                        }
+                                    }
+                                }
+                            }
+
+                        }
+                    }
+                }
+            }
+
+
+
+        }
+    }
+}
