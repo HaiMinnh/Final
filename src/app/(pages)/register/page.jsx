@@ -213,7 +213,7 @@ const Register = () => {
               {/* Submit Button */}
               <div className="form-group form-button">
                 <button className="btn btn-primary btn_register" type="submit">
-                  Gửi
+                  Submit
                 </button>
               </div>
             </form>

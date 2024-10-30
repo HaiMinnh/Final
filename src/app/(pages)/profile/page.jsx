@@ -10,7 +10,7 @@ import { faPen } from '@fortawesome/free-solid-svg-icons';
 
 const Profile = () => {
 
-  
+
   const GigsList = ({ userId }) => {
     const [gigs, setGigs] = useState([]);
     const [loading, setLoading] = useState(true);
@@ -225,8 +225,6 @@ const Profile = () => {
                     </li>
                   </ul>
                 </div>
-
-
 
               </div>
             </div>
