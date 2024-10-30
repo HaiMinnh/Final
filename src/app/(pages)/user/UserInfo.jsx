@@ -1,26 +1,56 @@
-"use client"; // Đánh dấu component này là Client Component
+"use client";
 
-import React, { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { getProfileApi } from '../../action/service/userApi.js'; // Cập nhật đường dẫn đúng
+import React, { useEffect, useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPen } from '@fortawesome/free-solid-svg-icons';
+import { getUserInfoApi } from '../../action/service/userApi.js';
+import styles from '../../scss/profile.scss';
 
-const UserProfile = () => {
-  const dispatch = useDispatch();
-  const userId = getStore(ID_LOGIN); // Hoặc lấy userId từ props hoặc state
-  const userProfile = useSelector(state => state.userProfile); // Cập nhật tên state đúng
+const UserInfo = ({ userId }) => {
+  const [userInfo, setUserInfo] = useState(null);
+  const [loading, setLoading] = useState(true);
 
+  // useEffect để gọi API khi component mount
   useEffect(() => {
-    dispatch(getProfileApi(userId));
-  }, [dispatch, userId]);
+    const fetchUserInfo = async () => {
+      if (!userId) {
+        console.error("User ID is not available. Please login first.");
+        setLoading(false);
+        return;
+      }
+
+      try {
+        const data = await getUserInfoApi(userId);
+        if (data) {
+          setUserInfo(data);
+        } else {
+          console.error("No user information returned");
+        }
+      } catch (error) {
+        console.error("Error fetching user info:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchUserInfo();
+  }, [userId]);
+
+  // Hiển thị trạng thái loading
+  if (loading) {
+    return <div>Loading...</div>;
+  }
+
+  if (!userInfo) {
+    return <div>No user information available</div>;
+  }
 
   return (
     <div className="info">
       <div className="info_sellercard_top">
         <div className="info_card">
           <div className="onl">
-            <div className="user_online ">
+            <div className="user_online">
               <i className="fas fa-circle"></i>
               <span>Online</span>
             </div>
@@ -46,12 +76,12 @@ const UserProfile = () => {
                 </div>
                 <input className="label_inp" type="file" />
                 <div className="image d-flex">
-                  <p className="text my-0 text-center" style={{ fontSize: '16px' }}>{userProfile.name || 'Chưa có tên'}</p>
+                  <p className="text my-0 text-center" style={{ fontSize: '16px' }}>{userInfo.name}</p>
                 </div>
               </label>
             </div>
             <div className="info_profile_label">
-              <p>{userProfile.email || 'Chưa có email'}</p>
+              <p>{userInfo.email}</p>
               <div className="btn_update">
                 <button className="edit">
                   <FontAwesomeIcon icon={faPen} className="icon" />
@@ -67,7 +97,7 @@ const UserProfile = () => {
                 <span>From</span>
               </div>
               <div className="location_right">
-                <span>{userProfile.location || 'Chưa có thông tin'}</span>
+                <span>{userInfo.location}</span>
               </div>
             </div>
             <div className="location">
@@ -76,7 +106,7 @@ const UserProfile = () => {
                 <span>Member since</span>
               </div>
               <div className="location_right">
-                <span className="text">{userProfile.memberSince || 'Chưa có thông tin'}</span>
+                <span className="text">{userInfo.memberSince}</span>
               </div>
             </div>
           </div>
@@ -94,15 +124,15 @@ const UserProfile = () => {
             </div>
             <div className="d-flex align-items-center gap-5">
               <h6>Name:</h6>
-              <p className="lorem">{userProfile.name || 'Chưa có thông tin'}</p>
+              <p className="lorem">{userInfo.name}</p>
             </div>
             <div className="d-flex align-items-center gap-5">
               <h6>Phone:</h6>
-              <p className="lorem">{userProfile.phone || 'Chưa có thông tin'}</p>
+              <p className="lorem">{userInfo.phone}</p>
             </div>
             <div className="d-flex align-items-center gap-5">
               <h6>Birthday:</h6>
-              <p className="lorem">{userProfile.birthday || 'Chưa có thông tin'}</p>
+              <p className="lorem">{userInfo.birthday}</p>
             </div>
           </div>
 
@@ -110,7 +140,15 @@ const UserProfile = () => {
             <div className="inner_row">
               <h3>Languages</h3>
             </div>
-            <p className="lorem">{userProfile.languages?.join(', ') || 'Chưa có thông tin'}</p>
+            {userInfo.languages.length > 0 ? (
+              userInfo.languages.map((lang, index) => (
+                <p className="lorem" key={index}>
+                  {lang.name} <span>{lang.level}</span>
+                </p>
+              ))
+            ) : (
+              <p>No languages listed</p>
+            )}
           </div>
 
           <div className="inner_item">
@@ -121,9 +159,13 @@ const UserProfile = () => {
               </button>
             </div>
             <div className="d-flex flex-row flex-wrap">
-              {userProfile.skills?.map(skill => (
-                <span key={skill} className="skill-item">{skill}</span>
-              )) || 'Chưa có thông tin'}
+              {userInfo.skills.length > 0 ? (
+                userInfo.skills.map((skill, index) => (
+                  <span key={index} className="skill">{skill}</span>
+                ))
+              ) : (
+                <p>No skills listed</p>
+              )}
             </div>
           </div>
 
@@ -134,7 +176,7 @@ const UserProfile = () => {
                 <FontAwesomeIcon icon={faPen} className="icon" />
               </button>
             </div>
-            <p className="lorem">{userProfile.education || 'Chưa có thông tin'}</p>
+            <p className="lorem">{userInfo.education}</p>
           </div>
 
           <div className="inner_item">
@@ -145,9 +187,13 @@ const UserProfile = () => {
               </button>
             </div>
             <div className="d-flex flex-row flex-wrap">
-              {userProfile.certifications?.map(cert => (
-                <span key={cert} className="cert-item">{cert}</span>
-              )) || 'Chưa có thông tin'}
+              {userInfo.certifications.length > 0 ? (
+                userInfo.certifications.map((cert, index) => (
+                  <span key={index} className="cert">{cert}</span>
+                ))
+              ) : (
+                <p>No certifications listed</p>
+              )}
             </div>
           </div>
 
@@ -156,7 +202,15 @@ const UserProfile = () => {
               <h3>Linked Accounts</h3>
             </div>
             <ul className="ul">
-              {/* Thêm nội dung cho các tài khoản đã liên kết */}
+              {userInfo.linkedAccounts.length > 0 ? (
+                userInfo.linkedAccounts.map((account, index) => (
+                  <li className="li" key={index}>
+                    <a href={account.link} className="btn-connect">{account.platform}</a>
+                  </li>
+                ))
+              ) : (
+                <li>No linked accounts</li>
+              )}
             </ul>
           </div>
         </div>
@@ -165,5 +219,4 @@ const UserProfile = () => {
   );
 };
 
-export default UserProfile;
-
+export default UserInfo;

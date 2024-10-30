@@ -98,10 +98,21 @@ export const signinUserApi = async (userInfo) => {
 
         const data = await res.json();
         console.log("Đăng nhập thành công:", data);
-        alert("Đăng nhập thành công!"); 
+        alert("Đăng nhập thành công!");
+
+         // Lưu thông tin vào localStorage
+         const userId = data.content.user.id; // Giả sử API trả về userId trong content.user
+         const token = data.content.token; // Giả sử API trả về token
+         const role = data.content.user.role; // Giả sử API trả về role trong content.user
+ 
+         // Lưu thông tin vào localStorage
+         localStorage.setItem('userId', userId); 
+         localStorage.setItem('token', token);
+         localStorage.setItem('role', role);
+
         return data.content; 
     } catch (error) {
-        alert("Không thể đăng nhập người dùng từ API");
+        alert("Tài khoản chưa đăng kí");
         console.error(error);
     }
 };
@@ -110,6 +121,33 @@ export const signinUserApi = async (userInfo) => {
 
 
 //profile
+
+// hàm lấy thông tin người dùng
+export const getUserInfoApi = (userId = getStore('userId')) => {
+    return async (dispatch) => {
+      try {
+        const res = await fetch(`https://fiverrnew.cybersoft.edu.vn/api/users/${userId}`, {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json',
+            tokenCybersoft: TokenCyber, // Đảm bảo có token nếu cần thiết
+          },
+        });
+  
+        if (!res.ok) {
+          throw new Error(`Error: ${res.status}`);
+        }
+  
+        const data = await res.json();
+        const action = getUserInfoAction(data.content); // Tạo action để dispatch
+        dispatch(action);
+        setStoreJson('USER_LOGIN', data.content); // Lưu thông tin vào localStorage
+      } catch (err) {
+        console.log(err);
+      }
+    };
+  };
+
 // hàm cập nhật thông tin profile
 export const updateUserInfoApi = async (userId, userInfo) => {
     const res = await fetch(`https://fiverrnew.cybersoft.edu.vn/api/users/${userId}`, {
@@ -131,24 +169,7 @@ export const updateUserInfoApi = async (userId, userInfo) => {
 };
 
 
-// hàm lấy thông tin người dùng
-export const getUserInfoApi = async (userId) => {
-    const res = await fetch(`https://fiverrnew.cybersoft.edu.vn/api/users/${userId}`, {
-        method: 'GET',
-        headers: {
-            'Content-Type': 'application/json',
-            tokenCybersoft: TokenCyber,
-        },
-    });
 
-    if (!res.ok) {
-        throw new Error(`Error: ${res.status}`);
-    }
-
-    const data = await res.json();
-    console.log(data);
-    return data.content;
-};
 //hàm lấy danh sach cong viec
 
 export const getJobsUserHasHiredApi = async () => {
