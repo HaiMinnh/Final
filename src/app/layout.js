@@ -1,5 +1,5 @@
 import localFont from "next/font/local";
-import "./globals.css";
+import "./globals.scss";
 import "./scss/custom.scss"
 import 'animate.css';
 import HeaderPage from "./component/HeaderPage";

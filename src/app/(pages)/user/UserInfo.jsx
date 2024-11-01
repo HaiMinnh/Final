@@ -4,7 +4,6 @@ import React, { useEffect, useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPen } from '@fortawesome/free-solid-svg-icons';
 import { getUserInfoApi } from '../../action/service/userApi.js';
-import styles from '../../scss/profile.scss';
 
 const UserInfo = ({ userId }) => {
   const [userInfo, setUserInfo] = useState(null);
